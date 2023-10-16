@@ -22,7 +22,7 @@ app.use(express.json());
 // http requestion get method root
 app.get("/", (req, res) => {
   res.send(
-    "Welcome! Backend for myonlinenotes website is working, please visit https://myonlinenotes.netlify.app/ for client side"
+    "Greetings"
   );
 });
 
