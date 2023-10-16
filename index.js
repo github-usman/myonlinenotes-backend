@@ -22,7 +22,7 @@ app.use(express.json());
 // http requestion get method root
 app.get("/", (req, res) => {
   res.send(
-    "Greetings"
+    '"Greetings"'
   );
 });
 
