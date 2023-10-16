@@ -21,8 +21,11 @@ app.use(express.json());
 
 // http requestion get method root
 app.get("/", (req, res) => {
-  res.set('Content-Type', 'text/plain; charset=utf-8');
-  res.send('Greetings');
+  // Set the content type to audio
+  res.set('Content-Type', 'audio/wav');
+
+  // Send the audio file
+  res.sendFile('2264.wav', { root: __dirname }); // Assumes the audio file is in the same directory as your script
 });
 
 app.use("/auth", authRoutes);
