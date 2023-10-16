@@ -4,6 +4,8 @@ import authRoutes from "./routes/auth.js";
 import notesRoutes from "./routes/notes.js";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path"; // Import the 'path' module
+
 dotenv.config();
 
 const dbHost = process.env.DB_HOST;
@@ -14,18 +16,17 @@ connectToMongo();
 
 const app = express();
 
-// middleware to parse the   object into json are follow helper
-
-app.use(cors()); // for local hosting
+app.use(cors());
 app.use(express.json());
 
-// http requestion get method root
-app.get("/", (req, res) => {
-  // Set the content type to audio
+// Define a route for serving the audio file
+app.get("/audio", (req, res) => {
+  // Set the content type to "audio/wav"
   res.set('Content-Type', 'audio/wav');
 
   // Send the audio file
-  res.sendFile('2264.wav', { root: __dirname }); // Assumes the audio file is in the same directory as your script
+  const audioFilePath = path.join(__dirname, '2264.wav');
+  res.sendFile(audioFilePath);
 });
 
 app.use("/auth", authRoutes);
