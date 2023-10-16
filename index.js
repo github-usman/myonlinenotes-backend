@@ -20,7 +20,7 @@ app.use(cors()); // for local hosting
 app.use(express.json());
 
 // http requestion get method root
-app.get("/", (req, res) => {
+app.get("/audio", (req, res) => {
   res.send(
     "Welcome"
   );
