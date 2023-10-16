@@ -21,9 +21,8 @@ app.use(express.json());
 
 // http requestion get method root
 app.get("/", (req, res) => {
-  res.send(
-    '"Greetings"'
-  );
+  res.set('Content-Type', 'text/plain; charset=utf-8');
+  res.send('Greetings');
 });
 
 app.use("/auth", authRoutes);
