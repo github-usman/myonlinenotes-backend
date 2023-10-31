@@ -20,25 +20,18 @@ const app = express();
 app.use(cors()); // For local hosting
 app.use(express.json());
 
-// HTTP request for the /audio route
-app.get("/audio", async (req, res) => {
+// HTTP request for the /greetings route
+app.get("/greetings", async (req, res) => {
   try {
-    // Make an HTTP GET request to the external URL to fetch the audio data
-    const response = await axios.get("https://s3-assets.stg.schedula.in/scripts/2264.wav", {
-      responseType: "arraybuffer", // Request audio data as an array buffer
-    });
-
-    // Set the response headers for the audio file
-    res.setHeader("Content-Type", "audio/wav");
-    res.setHeader("Content-Length", response.data.length);
-
-    // Send the audio data as the response
-    res.end(response.data);
+    // Return plain text response
+    res.setHeader("Content-Type", "text/plain");
+    res.send("Welcome to Schedula thanks");
   } catch (error) {
-    console.error("Error fetching audio:", error);
-    res.status(500).send("Error fetching audio");
+    console.error("Error generating plain text response:", error);
+    res.status(500).send("Error generating plain text response");
   }
 });
+
 
 app.use("/auth", authRoutes);
 app.use("/notes", notesRoutes);
